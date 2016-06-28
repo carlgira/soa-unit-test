@@ -123,7 +123,7 @@ public class UnitTestManager {
             List<TestCase> testcases = new ArrayList<TestCase>();
 
             for(TestCase testCase : tempTestcases){
-                if(testCase.getName().equals(testCaseName)){
+                if(testCase.getName().equals(testCaseName + ".xml")){
                     testcases.add(testCase);
                 }
             }

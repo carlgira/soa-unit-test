@@ -2,27 +2,18 @@ package com.carlgira.oracle.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
-
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import groovy.lang.GroovyShell;
 
-/**
- * Created by carlgira on 24/06/2016.
- */
+
 @RestController
 public class GroovyShellManager {
 
     private static String implementationName = "com.carlgira.testcase.GroovyProcessor";
 
-    @RequestMapping("/groovyShell/create/{testId}")
-    public Boolean createGroovyShell(@PathVariable("testId") String testId) throws Exception {
-
+    @RequestMapping("/groovyShell/create")
+    public Boolean createGroovyShell(@RequestParam(value = "testId", required = true) String testId) throws Exception {
         Class implClass = Class.forName(implementationName, true, Thread.currentThread().getContextClassLoader());
         Method getServiceMethod = implClass.getMethod("addNewShell", new Class[]{String.class});
         Object result = getServiceMethod.invoke(null, new Object[]{testId});
@@ -30,8 +21,8 @@ public class GroovyShellManager {
         return (Boolean)result;
     }
 
-    @RequestMapping("/groovyShell/delete/{testId}")
-    public Boolean deleteGroovyShell(@PathVariable("testId") String testId)  throws Exception {
+    @RequestMapping("/groovyShell/delete")
+    public Boolean deleteGroovyShell(@RequestParam(value = "testId", required = true) String testId)  throws Exception {
 
         Class implClass = Class.forName(implementationName, true, Thread.currentThread().getContextClassLoader());
         Method getServiceMethod = implClass.getMethod("deleteShell", new Class[]{String.class});
@@ -50,9 +41,9 @@ public class GroovyShellManager {
         return (Boolean)result;
     }
 
-    @RequestMapping(value = "/groovyShell/execute/{testId}" ,method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+    @RequestMapping(value = "/groovyShell/execute" ,method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
     @ResponseBody
-    public String executeGroovy(@PathVariable("testId") String testId, HttpEntity<String> httpEntity) throws Exception {
+    public String executeGroovy(@RequestParam(value = "testId", required = true) String testId, HttpEntity<String> httpEntity) throws Exception {
         String jsonInString = httpEntity.getBody();
 
         ObjectMapper mapper = new ObjectMapper();

@@ -25,14 +25,14 @@ public class GroovyShellServiceTest {
     public void testDeleteGroovyShell() throws IOException {
         String testId = String.valueOf((int)(Math.random()*1000));
 
-        boolean result = this.unitTestManager.deleteNewGroovyShell(testId);
+        boolean result = this.unitTestManager.deleteGroovyShell(testId);
         assertTrue(!result);
 
         this.unitTestManager.createNewGroovyShell(testId);
-        result = this.unitTestManager.deleteNewGroovyShell(testId);
+        result = this.unitTestManager.deleteGroovyShell(testId);
         assertTrue(result);
 
-        result = this.unitTestManager.deleteNewGroovyShell(testId);
+        result = this.unitTestManager.deleteGroovyShell(testId);
         assertTrue(!result);
     }
 

@@ -2,7 +2,10 @@ package com.carlgira.oracle;
 
 import com.carlgira.oracle.test.GroovyShellService;
 import com.carlgira.oracle.test.UnitTestManager;
+import org.junit.After;
 import org.junit.Test;
+
+import java.io.IOException;
 
 public class SoaUnitTest {
 
@@ -12,12 +15,12 @@ public class SoaUnitTest {
     private GroovyShellService groovyShellService;
 
     public SoaUnitTest() throws Exception {
-        this.host = "localhost";
+        this.host = "192.168.100.228";
         this.user = "weblogic";
-        this.password = "welcome1";
+        this.password = "weblogic11prb";
         this.port = 8001;
         this.unitTestManager = new UnitTestManager(host,port,user,password);
-        this.groovyShellService = new GroovyShellService(host,port);
+        this.groovyShellService = new GroovyShellService(this.host, this.port);
     }
 
     /**
@@ -34,19 +37,29 @@ public class SoaUnitTest {
     @Test
     public void testTestSuite2() throws Exception {
 
-        String compositeDN = "";
-        String testSuite = "";
-        String testCase = "";
+        String compositeDN = "default/soa-test-project!1.0";
+
+        String testSuite = "test_suite2";
+        String testCase = "test_case1";
 
         String testId = compositeDN + "/" + testSuite + "/" + testCase;
 
-        // Load data or pre conditions
+        // Load data before the execution of the test
         this.groovyShellService.createNewGroovyShell(testId);
-        this.groovyShellService.executeGroovy(testId, "name=\"OutsideValue\"");
+
+        this.groovyShellService.executeGroovy(testId, "name='outName'");
 
         this.unitTestManager.executeTestCase(compositeDN,testSuite,testCase);
 
-        String getValue = this.groovyShellService.executeGroovy(testId, "token");
+        // Get a variable from after the execution of the test
+        String token = this.groovyShellService.executeGroovy(testId, "token");
+        System.out.println("SavedValue token = " + token);
 
+    }
+
+    @After
+    public void cleanShells() throws IOException {
+        // Clean the server so no groovy shell gets on weblogic
+        this.groovyShellService.clearAllGroovyShells();
     }
 }

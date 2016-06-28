@@ -8,9 +8,35 @@
     <artifactId>sample-unit-test-project</artifactId>
     <version>1.0.0</version>
 
-
-
     <dependencies>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>fabric-runtime</artifactId>
+            <version>${soa-version}</version>
+            <scope>system</scope>
+            <systemPath>${fabric-runtime}</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>soa-infra-mgmt</artifactId>
+            <version>${soa-version}</version>
+            <scope>system</scope>
+            <systemPath>${soa-infra-mgmt}</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>jrf-api</artifactId>
+            <version>${soa-version}</version>
+            <scope>system</scope>
+            <systemPath>${jrf-api}</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>weblogic</artifactId>
+            <version>${soa-version}</version>
+            <scope>system</scope>
+            <systemPath>${weblogic-jar}</systemPath>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -23,5 +49,41 @@
             <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>soa-11.7</id>
+            <activation>
+                <property>
+                    <name>soa-version</name>
+                    <value>11.1.1.7</value>
+                </property>
+            </activation>
+            <properties>
+                <mdw.home>I:\Middleware</mdw.home>
+                <fabric-runtime>${mdw.home}/Oracle_SOA1/soa/modules/oracle.soa.fabric_11.1.1/fabric-runtime.jar</fabric-runtime>
+                <soa-infra-mgmt>${mdw.home}/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar</soa-infra-mgmt>
+                <jrf-api>${mdw.home}/oracle_common/modules/oracle.jrf_11.1.1/jrf-api.jar</jrf-api>
+                <weblogic-jar>${mdw.home}/wlserver_10.3/server/lib/weblogic.jar</weblogic-jar>
+            </properties>
+        </profile>
+        <profile>
+            <id>soa-12.1.3</id>
+            <activation>
+                <property>
+                    <name>soa-version</name>
+                    <value>12.1.3</value>
+                </property>
+            </activation>
+            <properties>
+                <mdw.home>/home/oracle/disk/Oracle/Middleware/Oracle_Home</mdw.home>
+                <fabric-runtime>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/fabric-runtime.jar</fabric-runtime>
+                <soa-infra-mgmt>${mdw.home}/soa/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar</soa-infra-mgmt>
+                <jrf-api>${mdw.home}/oracle_common/modules/oracle.jrf_12.1.3/jrf-api.jar</jrf-api>
+                <weblogic-jar>${mdw.home}/wlserver/server/lib/weblogic.jar</weblogic-jar>
+            </properties>
+        </profile>
+    </profiles>
+
 
 </project>

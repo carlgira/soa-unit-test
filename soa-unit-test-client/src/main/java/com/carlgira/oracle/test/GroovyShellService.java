@@ -27,7 +27,7 @@ public class GroovyShellService {
      * @throws IOException
      */
     public boolean createNewGroovyShell(String testCaseName) throws IOException {
-        URL url = new URL("http://"+ host  + ":" + this.port  + "/soa-unit-test-webapp-1.0.0/groovyShell/create/" + testCaseName );
+        URL url = new URL("http://"+ host  + ":" + this.port  + "/soa-unit-test-webapp-1.0.0/groovyShell/create?testId=" + testCaseName );
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
@@ -51,8 +51,8 @@ public class GroovyShellService {
      * @return
      * @throws IOException
      */
-    public boolean deleteNewGroovyShell(String testCaseName) throws IOException {
-        URL url = new URL("http://"+ host  + ":" + this.port  + "/soa-unit-test-webapp-1.0.0/groovyShell/delete/" + testCaseName );
+    public boolean deleteGroovyShell(String testCaseName) throws IOException {
+        URL url = new URL("http://"+ host  + ":" + this.port  + "/soa-unit-test-webapp-1.0.0/groovyShell/delete?testId=" + testCaseName );
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
@@ -99,7 +99,7 @@ public class GroovyShellService {
      * @throws IOException
      */
     public String executeGroovy(String testCaseName, String groovy) throws IOException {
-        URL url = new URL("http://"+ host  + ":" + this.port  + "/soa-unit-test-webapp-1.0.0/groovyShell/execute/" + testCaseName );
+        URL url = new URL("http://"+ host  + ":" + this.port  + "/soa-unit-test-webapp-1.0.0/groovyShell/execute?testId=" + testCaseName );
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");

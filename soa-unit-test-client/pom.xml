@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.carlgira.oracle</groupId>
+    <artifactId>soa-unit-test-client</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- <mdw.home>/home/carlgira/Oracle/Middleware</mdw.home> -->
+        <mdw.home>I:\Middleware</mdw.home>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>fabric-runtime</artifactId>
+            <version>11.1.1</version>
+            <scope>system</scope>
+            <systemPath>${mdw.home}/Oracle_SOA1/soa/modules/oracle.soa.fabric_11.1.1/fabric-runtime.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>soa-infra-mgmt</artifactId>
+            <version>11.1.1</version>
+            <scope>system</scope>
+            <systemPath>${mdw.home}/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>wsclient_extended</artifactId>
+            <version>11.1.1</version>
+            <scope>system</scope>
+            <systemPath>${mdw.home}/oracle_common/webservices/wsclient_extended.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>wsclient-rt</artifactId>
+            <version>11.1.1</version>
+            <scope>system</scope>
+            <systemPath>${mdw.home}/oracle_common/modules/oracle.webservices_11.1.1/wsclient-rt.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>weblogic</artifactId>
+            <version>11.1.1</version>
+            <scope>system</scope>
+            <systemPath>${mdw.home}/wlserver_10.3/server/lib/weblogic.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -60,7 +60,15 @@ public class GroovyProcessor {
         if(groovyShells.get(testId) == null){
             return "";
         }
-        return groovyShells.get(testId).evaluate(expr).toString();
+        String result = "error";
+        try{
+            result = groovyShells.get(testId).evaluate(expr).toString();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     /**

@@ -36,25 +36,24 @@ public class SoaUnitTest {
      */
     @Test
     public void testTestSuite2() throws Exception {
-
         String compositeDN = "default/soa-test-project!1.0";
-
         String testSuite = "test_suite2";
         String testCase = "test_case1";
 
         String testId = compositeDN + "/" + testSuite + "/" + testCase;
 
-        // Load data before the execution of the test
+        // Creation of groovyShell
         this.groovyShellService.createNewGroovyShell(testId);
 
+        // Load data before the execution of the test
         this.groovyShellService.executeGroovy(testId, "name='outName'");
 
+        // Execution of test case
         this.unitTestManager.executeTestCase(compositeDN,testSuite,testCase);
 
-        // Get a variable from after the execution of the test
+        // Retrieve a variable after the test execution
         String token = this.groovyShellService.executeGroovy(testId, "token");
         System.out.println("SavedValue token = " + token);
-
     }
 
     @After

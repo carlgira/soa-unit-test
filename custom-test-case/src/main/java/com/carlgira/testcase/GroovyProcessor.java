@@ -57,17 +57,12 @@ public class GroovyProcessor {
      * @return
      */
     public static String evaluate(String testId, String expr){
-        if(groovyShells.get(testId) == null){
-            return "";
-        }
         String result = "error";
         try{
             result = groovyShells.get(testId).evaluate(expr).toString();
         }
         catch (Exception e){
-            e.printStackTrace();
         }
-
         return result;
     }
 

@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Groovy Shell client service. Adds, delete groovy shells and execute code groovy code inside those shells
+ * Groovy Shell client service. Adds, delete groovy shells and execute code groovy code
  */
 public class GroovyShellService {
 
@@ -38,8 +38,9 @@ public class GroovyShellService {
 
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output = "";
-        while (br.ready()) {
-            output += br.readLine();
+        String line;
+        while ((line = br.readLine()) != null){
+            output += line;
         }
         conn.disconnect();
         return output.equals("true");
@@ -63,8 +64,9 @@ public class GroovyShellService {
 
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output = "";
-        while (br.ready()) {
-            output += br.readLine();
+        String line;
+        while ((line = br.readLine()) != null){
+            output += line;
         }
         conn.disconnect();
         return output.equals("true");
@@ -85,8 +87,9 @@ public class GroovyShellService {
         }
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output = "";
-        while (br.ready()) {
-            output += br.readLine();
+        String line;
+        while ((line = br.readLine()) != null){
+            output += line;
         }
         conn.disconnect();
     }
@@ -115,10 +118,11 @@ public class GroovyShellService {
             throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
         }
 
-        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String output = "";
-        while (br.ready()) {
-            output += br.readLine();
+        String line;
+        while ((line = br.readLine()) != null){
+            output += line;
         }
         conn.disconnect();
 

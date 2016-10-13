@@ -10,10 +10,34 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
+        <mdw.home>E:\Oracle\Middleware12210\Oracle_Home</mdw.home>
+        <testfwk-xbeans>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/testfwk-xbeans.jar</testfwk-xbeans>
+        <fabric-ext>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/fabric-ext.jar</fabric-ext>
+        <fabric-runtime>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/fabric-runtime.jar</fabric-runtime>
+        <fabric-common>${mdw.home}/oracle_common/modules/com.oracle.webservices.fabric-common-api.jar</fabric-common>
+        <xmlparserv2>${mdw.home}/oracle_common/modules/oracle.xdk/xmlparserv2.jar</xmlparserv2>
+        <com.bea.core.xml.xmlbeans>${mdw.home}/wlserver/modules/com.bea.core.xml.xmlbeans.jar</com.bea.core.xml.xmlbeans>
+        <!-- Careful! If you change the version, may not work -->
+        <groovy.version>2.4.7</groovy.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-sql</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-xml</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -62,12 +86,6 @@
             <scope>system</scope>
             <systemPath>${com.bea.core.xml.xmlbeans}</systemPath>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-console</artifactId>
-            <version>2.4.6</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -138,6 +156,24 @@
                 <fabric-common>${mdw.home}/oracle_common/modules/com.oracle.webservices.fabric-common-api_12.1.3.jar</fabric-common>
                 <xmlparserv2>${mdw.home}/oracle_common/modules/oracle.xdk_12.1.3/xmlparserv2.jar</xmlparserv2>
                 <com.bea.core.xml.xmlbeans>${mdw.home}/oracle_common/modules/com.bea.core.xml.xmlbeans_1.0.0.0_2-6-0.jar</com.bea.core.xml.xmlbeans>
+            </properties>
+        </profile>
+        <profile>
+            <id>soa-12.2.1</id>
+            <activation>
+                <property>
+                    <name>soa-version</name>
+                    <value>12.2.1</value>
+                </property>
+            </activation>
+            <properties>
+                <mdw.home>E:\Oracle\Middleware12210\Oracle_Home</mdw.home>
+                <testfwk-xbeans>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/testfwk-xbeans.jar</testfwk-xbeans>
+                <fabric-ext>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/fabric-ext.jar</fabric-ext>
+                <fabric-runtime>${mdw.home}/soa/soa/modules/oracle.soa.fabric_11.1.1/fabric-runtime.jar</fabric-runtime>
+                <fabric-common>${mdw.home}/oracle_common/modules/com.oracle.webservices.fabric-common-api.jar</fabric-common>
+                <xmlparserv2>${mdw.home}/oracle_common/modules/oracle.xdk/xmlparserv2.jar</xmlparserv2>
+                <com.bea.core.xml.xmlbeans>${mdw.home}/wlserver/modules/com.bea.core.xml.xmlbeans.jar</com.bea.core.xml.xmlbeans>
             </properties>
         </profile>
     </profiles>

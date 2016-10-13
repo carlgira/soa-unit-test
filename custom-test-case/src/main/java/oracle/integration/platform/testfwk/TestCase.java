@@ -61,8 +61,7 @@ public class TestCase
             if (include != null) {
                 this.mParent = new TestCase(compositeName, suiteName, include, true, factory);
             }
-
-            this.groovyProcessor = new GroovyProcessor(compositeName + "/" + suiteName + "/" + testName.substring(0, testName.length()-4));
+            this.groovyProcessor = new GroovyProcessor(testName);
         }
         catch (Exception xe)
         {
@@ -154,6 +153,7 @@ public class TestCase
             populatePayload(msg, daoFactory, payload);
             NormalizedMessage nMsg = new NormalizedMessageImpl();
             nMsg.setPayload(payload);
+
             return nMsg;
         }
         catch (Throwable t)
@@ -318,10 +318,12 @@ public class TestCase
                 }
             }
             TestFwkUtil.buildElement(this.mDAO.getCompositeDN(), this.mDAO.getTestSuite(), daoFactory, XPathFactory.newInstance().newXPath(), part);
+            // NEW CODE
             if(this.groovyProcessor.hasGroovy(part)){
                 String result = this.groovyProcessor.processXML(part);
                 part.set(XmlObject.Factory.parse(result));
             }
+            // END OF NEW CODE
 
             Node n = part.getContent().getDomNode();
 

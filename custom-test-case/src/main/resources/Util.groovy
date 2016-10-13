@@ -110,7 +110,6 @@ namedQueries = null
  */
 def initNamedQueries(){
     this.namedQueries.put("testQuery", "select 1 app from dual")
-    this.namedQueries.put("getAgenteTarjetaNombreEmail", "SELECT CDTARJE,CDAGENTE, NOMBRE, APELLIDOS, EMAIL FROM (SELECT * FROM TARJETA WHERE FEBAJA > SYSDATE ORDER BY DBMS_RANDOM.VALUE) WHERE rownum = 1")
 }
 
 /**
